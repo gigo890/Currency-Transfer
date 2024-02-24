@@ -1,0 +1,258 @@
+
+/* NAVBAR*/
+.nav{
+    overflow: hidden;
+    background-color: #023047;
+    position: relative; 
+    display:flex;
+}
+.navlist{
+    display: flex;
+    flex-direction: column;
+}
+.nav #myLinks{
+    display:none;
+}
+.nav a,div.menu{
+    color:white;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    display: block;
+}
+.home {
+    background-color: #023047;
+    color: white;
+}
+.home img{
+    height: 104px;
+    width:117px;
+}
+/* MENU ICON */
+.menu {
+    display: inline-block;
+    cursor: pointer;
+    vertical-align: middle;
+    background: #023047;
+    position: absolute;
+    
+    right: 0;
+    top: 0;
+
+    margin: 30px 20px;
+}
+.bar1, .bar2, .bar3 {
+    width: 49px;
+    height: 7px;
+    background-color: white;
+    margin: 6px 0;
+}
+
+/* FOOTER */
+.footer{
+    background-color: #023047;
+}
+.footer a{
+    
+    display: block;
+    color: white;
+
+    text-align: left;
+    padding: 14px 16px;
+    text-decoration: none;
+    text-align: center;
+}
+div.footer > p{
+    color: white;
+    padding: 14px, 16px;
+}
+.footer{
+    text-align: center;
+}
+
+/* GRID */
+div.grid{
+    width:90vw;
+    height:auto;
+    margin:5vw;
+    background-color: white;
+
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.grid > .course{
+    
+    padding:10px;
+    margin: 10px;
+    border: solid #d99c0d 5px;
+    background-color:#023047;
+    color: white;
+    height: 300px;
+    width: 300px;
+}
+div.grid > a.page{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    height: 300px;
+    width: 300px;
+    margin: 5px;
+    padding: 20px;
+    color: white;
+    background-color: #023047;
+
+    border-radius: 5%;
+    border-style: solid;
+    border-color: #d99c0d;
+    border-width: 5px;
+
+    text-decoration: none;
+    text-align:center;
+}
+div.grid > a.page > .pageimg{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    width: 75%;
+    aspect-ratio: 1;
+}
+
+.pageimg#courses{
+    background-image: url("../images/cantor-lecture-theatre-3.webp");
+}
+.pageimg#facilities{
+    background-image: url("../images/ACES-036-Computing-Playstation-Lab-2.webp");
+}
+.pageimg#about-us{
+    background-image: url("../images/IMG_1089.webp");
+}
+.pageimg#learning-resources{
+    background-image: url("../images/learning-resources-banner.webp");
+}
+.pageimg#information-for-students{
+    background-image: url("../images/info-for-students-banner.webp")
+}
+.pageimg#information-for-business{
+    background-image: url("../images/info-for-business-banner.webp")
+}
+.pageimg#information-for-staff{
+    background-image: url("../images/Cantor4.webp");
+}
+
+
+
+.banner{
+    width:100vw;
+    height: 50vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; 
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; 
+    justify-content: center; 
+    align-items: center;
+}
+.banner#index{
+    background-image: url("../images/20230829_111351.webp");
+}
+.banner#courses{
+    background-image: url("../images/cantor-lecture-theatre-3.webp");
+}
+.banner#facilities{
+    background-image: url("../images/ACES-036-Computing-Playstation-Lab-2.webp");
+}
+.banner#about-us{
+    background-image: url("../images/IMG_1089.webp");
+}
+.banner#learning-resources{
+    background-image: url("../images/learning-resources-banner.webp");
+}
+.banner#information-for-business{
+    background-image: url("../images/info-for-business-banner.webp");
+}
+.banner#information-for-students{
+    background-image: url("../images/info-for-students-banner.webp");
+}
+.banner#how-to-find-us{
+    background-image: url("../images/IMG_1437.webp");
+}
+.banner#information-for-staff{
+    background-image: url("../images/Cantor4.webp");
+}
+
+.banner > h1{
+    background-color: #023047;
+    color: white;
+    border: solid;
+    border-radius: 5%;
+    border-color: #d99c0d;
+    padding: 20px;
+    text-align: center;
+    margin: auto;
+}
+*{
+    padding: 0px;
+    margin: 0px;
+    font-family: helvetica, arial, sans-serif;
+}
+
+.container{
+    margin: 10px;
+  }
+.container p{
+    margin:10px;
+}
+.container h1{
+    color: white;
+    padding: 10px;
+    background-color: #023047;
+}
+.container ul{
+    padding: 16px 14px;
+    margin-left: 10px;
+}
+.container h2{
+    padding: 10px 
+}
+.container ul > li{
+    margin-left: 20px;
+}
+.list#learning-resources > ul{
+    list-style-type:upper-alpha;
+    padding: 10px;
+    margin-top: 10px;
+}
+.list#learning-resources > ul  ul{
+    list-style-type: lower-roman;
+    margin: 10px;
+}
+form{
+    padding: 20px;
+    margin: 10px;
+    background-color: #023047;
+    display: flex;
+    vertical-align: middle;
+}
+form h2{
+    color:white;
+}
+form input{
+    margin-left: 20px;
+    height:30px;
+    width: 175px;
+}
+form button{
+    height:34px;
+    width: 75px;
+    border-color:solid #023047 2px;
+
+}
