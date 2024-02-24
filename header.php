@@ -10,9 +10,9 @@
         <div class="navlist">
             <div class="home"><a href="index.php"><img src="images/logo.jpg" alt="College Logo"></a></div>
             <div id="myLinks">
-                <a href="courses.php">Courses</a>
-                <a href="facilities.php">Facilities</a>
-                <a href="about-us.php">About Us</a>
+                <a href="">Placeholder</a>
+                <a href="">Placeholder</a>
+                <a href="">Placeholder</a>
             </div>
         </div>
         
