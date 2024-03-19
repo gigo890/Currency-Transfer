@@ -2,7 +2,7 @@
 /* NAVBAR*/
 .nav{
     overflow: hidden;
-    background-color: #023047;
+    background-color: #282F44;
     position: relative; 
     display:flex;
 }
@@ -10,8 +10,15 @@
     display: flex;
     flex-direction: column;
 }
-.nav #myLinks{
+.nav #leftLinks{
     display:none;
+}
+.navRight{
+    display: flex;
+    flex-direction: column; 
+}
+.nav #rightLinks{
+
 }
 .nav a,div.menu{
     color:white;
@@ -21,7 +28,7 @@
     display: block;
 }
 .home {
-    background-color: #023047;
+    background-color: #282F44;
     color: white;
 }
 .home img{
@@ -33,7 +40,7 @@
     display: inline-block;
     cursor: pointer;
     vertical-align: middle;
-    background: #023047;
+    background: #282F44;
     position: absolute;
     
     right: 0;
@@ -50,7 +57,7 @@
 
 /* FOOTER */
 .footer{
-    background-color: #023047;
+    background-color: #282F44;
 }
 .footer a{
     
@@ -88,7 +95,7 @@ div.grid{
     padding:10px;
     margin: 10px;
     border: solid #d99c0d 5px;
-    background-color:#023047;
+    background-color:#282F44;
     color: white;
     height: 300px;
     width: 300px;
@@ -105,7 +112,7 @@ div.grid > a.page{
     margin: 5px;
     padding: 20px;
     color: white;
-    background-color: #023047;
+    background-color: #282F44;
 
     border-radius: 5%;
     border-style: solid;
@@ -162,7 +169,7 @@ div.grid > a.page > .pageimg{
     align-items: center;
 }
 .banner#index{
-    background-image: url("../images/20230829_111351.webp");
+    background-image: url("../images/currency-index-image.webp");
 }
 .banner#courses{
     background-image: url("../images/cantor-lecture-theatre-3.webp");
@@ -190,11 +197,11 @@ div.grid > a.page > .pageimg{
 }
 
 .banner > h1{
-    background-color: #023047;
+    background-color: #282F44;
     color: white;
     border: solid;
     border-radius: 5%;
-    border-color: #d99c0d;
+    border-color: white;
     padding: 20px;
     text-align: center;
     margin: auto;
@@ -206,15 +213,15 @@ div.grid > a.page > .pageimg{
 }
 
 .container{
-    margin: 10px;
   }
 .container p{
     margin:10px;
 }
-.container h1{
-    color: white;
-    padding: 10px;
-    background-color: #023047;
+.lineDivider{
+    padding: 10px;  
+    border-top: solid 5px white;
+    border-bottom: solid 5px white;
+    background-color: #282F44;
 }
 .container ul{
     padding: 16px 14px;
@@ -235,10 +242,35 @@ div.grid > a.page > .pageimg{
     list-style-type: lower-roman;
     margin: 10px;
 }
+div.container{
+    background-color: #434252;
+}
+
+div.sideContainer{
+    display:flex; 
+    flex-direction: column;
+    size: 100%; 
+}
+.sideContainer ul{
+    list-style-type: none;
+    background-color:#434252;
+}
+.sideContainer li{
+    
+    background-color: #282F44;
+    padding: 10px;
+    margin: 5px;
+    color: white;
+    font-size: 12px;
+    border-radius: 10px;
+    flex-direction: row;
+    display: flex;
+}
+
 form{
     padding: 20px;
     margin: 10px;
-    background-color: #023047;
+    background-color: #282F44;
     display: flex;
     vertical-align: middle;
 }
@@ -253,6 +285,6 @@ form input{
 form button{
     height:34px;
     width: 75px;
-    border-color:solid #023047 2px;
+    border-color:solid #282F44 2px;
 
 }

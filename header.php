@@ -8,14 +8,16 @@
 <body>
     <div class = "nav">
         <div class="navlist">
-            <div class="home"><a href="index.php"><img src="images/logo.jpg" alt="College Logo"></a></div>
-            <div id="myLinks">
+            <div id="leftLinks">
+                <a href="">Currency Transfer</a>
                 <a href="">Placeholder</a>
                 <a href="">Placeholder</a>
                 <a href="">Placeholder</a>
             </div>
+            <div id="rightLinks">
+                <a href="">Placeholder</a>
+            </div>
         </div>
-        
         <div class="icon-container">
             <div href="javascript:void(0);" class="menu" alt="open menu" onclick ="myFunction()">
                 <div class="bar1"></div>

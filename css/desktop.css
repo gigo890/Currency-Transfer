@@ -1,4 +1,4 @@
-.nav > #myLinks {
+.nav > #leftLinks {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -12,14 +12,16 @@
 .navlist{
   flex-direction: row !important;
 }
-.nav #myLinks{
+#leftLinks{
   display: inline !important;
   padding: 0;
   height: 100%;
-  margin-top: 35px;
 }
-  
-#myLinks a {
+#rightLinks{
+    position: absolute;
+    right: 20px;
+}
+#leftLinks a {
   color: white;
   text-align: center;
   padding: 16px;
@@ -50,4 +52,7 @@
 }
 .info .list{
   width: 40%;
+}
+.sideContainer{
+  width: 300px;
 }
