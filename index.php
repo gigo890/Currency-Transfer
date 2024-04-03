@@ -8,7 +8,7 @@
     <title>Currency Transfer | Home</title>
 </head>
 <body>
-    <?php include("header.php")?>
+    <?php include("includes/header.php")?>
     <div class="banner" id = "index">
         <h1>Currency Transfer</h1>
     </div>
@@ -45,7 +45,7 @@
             </ul>
         </div>
     </div>
-    <!-- <?php include("footer.php")?> -->
+    <!-- <?php include("includes/footer.php")?> -->
     <script defer src="js/main.js"></script>
 </body>
 </html>

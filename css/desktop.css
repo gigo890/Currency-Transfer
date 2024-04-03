@@ -1,4 +1,4 @@
-.nav > #leftLinks {
+.nav > .links {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -12,16 +12,16 @@
 .navlist{
   flex-direction: row !important;
 }
-#leftLinks{
+.links#left{
   display: inline !important;
   padding: 0;
   height: 100%;
 }
-#rightLinks{
+.links#right{
     position: absolute;
     right: 20px;
 }
-#leftLinks a {
+.links#left a {
   color: white;
   text-align: center;
   padding: 16px;
@@ -36,9 +36,6 @@
 }
 .nav > .home{
   display:none;
-}
-#myLinks a:hover {
-  background-color: #022030;
 }
 .container .info{
   display: flex;

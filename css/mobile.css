@@ -5,20 +5,17 @@
     background-color: #282F44;
     position: relative; 
     display:flex;
+    border-bottom: solid white 2px;
 }
 .navlist{
     display: flex;
     flex-direction: column;
 }
-.nav #leftLinks{
+.navlist a:hover{
+    background-color: #222738;
+}
+.nav .links{
     display:none;
-}
-.navRight{
-    display: flex;
-    flex-direction: column; 
-}
-.nav #rightLinks{
-
 }
 .nav a,div.menu{
     color:white;
@@ -131,28 +128,6 @@ div.grid > a.page > .pageimg{
     aspect-ratio: 1;
 }
 
-.pageimg#courses{
-    background-image: url("../images/cantor-lecture-theatre-3.webp");
-}
-.pageimg#facilities{
-    background-image: url("../images/ACES-036-Computing-Playstation-Lab-2.webp");
-}
-.pageimg#about-us{
-    background-image: url("../images/IMG_1089.webp");
-}
-.pageimg#learning-resources{
-    background-image: url("../images/learning-resources-banner.webp");
-}
-.pageimg#information-for-students{
-    background-image: url("../images/info-for-students-banner.webp")
-}
-.pageimg#information-for-business{
-    background-image: url("../images/info-for-business-banner.webp")
-}
-.pageimg#information-for-staff{
-    background-image: url("../images/Cantor4.webp");
-}
-
 
 
 .banner{
@@ -170,30 +145,6 @@ div.grid > a.page > .pageimg{
 }
 .banner#index{
     background-image: url("../images/currency-index-image.webp");
-}
-.banner#courses{
-    background-image: url("../images/cantor-lecture-theatre-3.webp");
-}
-.banner#facilities{
-    background-image: url("../images/ACES-036-Computing-Playstation-Lab-2.webp");
-}
-.banner#about-us{
-    background-image: url("../images/IMG_1089.webp");
-}
-.banner#learning-resources{
-    background-image: url("../images/learning-resources-banner.webp");
-}
-.banner#information-for-business{
-    background-image: url("../images/info-for-business-banner.webp");
-}
-.banner#information-for-students{
-    background-image: url("../images/info-for-students-banner.webp");
-}
-.banner#how-to-find-us{
-    background-image: url("../images/IMG_1437.webp");
-}
-.banner#information-for-staff{
-    background-image: url("../images/Cantor4.webp");
 }
 
 .banner > h1{
@@ -286,5 +237,20 @@ form button{
     height:34px;
     width: 75px;
     border-color:solid #282F44 2px;
-
+}
+.login-container{
+    background-color:#434252;
+    align-items: center;
+    justify-content: center;
+    display:flex;
+    width:100%;
+    height:80vh;
+}
+.login-box{
+    background-color: #282F44;
+    border-radius: 5px;
+    border: solid white 2px;
+    padding: 100px;
+    width: 200px;
+    height:200px;
 }
