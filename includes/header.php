@@ -10,7 +10,7 @@
         <div class="navlist">
         <a href="index.php">Currency Transfer</a>
             <div class="links" id='left'>
-                <a href="">Placeholder</a>
+                <a href="exchange.php">Exchange</a>
                 <a href="">Placeholder</a>
                 <a href="">Placeholder</a>
             </div>
