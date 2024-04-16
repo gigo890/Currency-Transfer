@@ -15,7 +15,7 @@
                 <a href="">Placeholder</a>
             </div>
             <div class="links" id='right'>
-                <a href="login.php">Login</a>
+                <a href="register.php">Login / Sign Up</a>
             </div>
         </div>
         <div class="icon-container">

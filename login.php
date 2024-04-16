@@ -10,8 +10,15 @@
 <body>
     <?php include("includes/header.php") ?>
     <div class='container'>
-        <div class='login-container'>
-            <div class='login-box'>
+        <div class='form-container'>
+            <div class='form-box'>
+                <form class="form-box" action="" method="post">
+                    <label for="email">Email:</label>
+                <input type="text" placeholder="Enter Email" name="email" required>
+
+                <label for="password">Password:</label>
+                <input type="text" placeholder="Enter Password" name="password" required>
+                </form>
                 
             </div>
         </div>
