@@ -15,7 +15,17 @@
                 <a href="">Placeholder</a>
             </div>
             <div class="links" id='right'>
-                <a href="login.php">Login / Sign Up</a>
+                <?php
+                    if($includeOption == 'userIndex'){
+                        echo('<a href="logout.php">Log Out</a>');
+                    }else if($includeOption == 'form'){
+                        echo('<a href="index.php">Return</a>');
+                    }
+                    else{
+                    echo('<a href="login.php">Login / Sign Up</a>');
+                    }
+                ?>
+                
             </div>
         </div>
         <div class="icon-container">

@@ -3,10 +3,10 @@ require_once('includes/config.php');
 require_once('includes/session.php');
 
 $error = ''; 
-if($_SERVER["REQUEST_METHOD"] == "POST" && isset($POST['submit'])){
+if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])){
 
-    $email = trim($POST['email']);
-    $password = trim($POST['password']);
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
 
     if(empty($email)){
         $error .= '<p class="error">Please Enter Email.</p>';
@@ -17,17 +17,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($POST['submit'])){
     }
 
     if(empty($error)){
-        if($query = $db->prepare('SELECT * FROM users WHERE email = ?')){
+        if($query = $db->prepare("SELECT * FROM users WHERE email = ?")){
             $query->bind_param('s', $email);
             $query->execute();
-            $row = $query->fetch();
-            if($row){
-                if(password_verify($password, $row['password'])){
-                    $_SESSION["userid"] = $row['user_id'];
-                    $_SESSION['user'] = $row;
+            $result = $query->get_result();
 
-                    header("location:index.php");
-                    exit;
+            if($result->num_rows == 1){
+
+                $user = $result->fetch_assoc();
+                $_SESSION['user'] = $user;
+                $userID = $user['user_id'];
+                $passwordHash = $user['password'];
+
+                if(password_verify($password, $passwordHash)){
+                    $_SESSION["user_id"] = $userID;
+                    $_SESSION["user"] = $user;
+                    header("Location: user-index.php");
+                    exit();
                 }else{
                     $error .= '<p class="Error">The Password is not valid.</p>';
                 }
@@ -51,15 +57,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($POST['submit'])){
     <title>Register</title>
 </head>
 <body>
-    <?php include("includes/header.php") ?>
-    <div class='container'>
-        <div class='form-container'>
-            <form class="form-box" action="" method="post">
+    <?php 
+    $includeOption = 'form';
+    include("includes/header.php");
+    ?>
+    <div class='form-container'>
+        <div class="form-box">
+            <h1 id="login">Log in</h1>
+            <form action="" method="post">
                 <label for="email">Email:</label>
                 <input type="text" placeholder="Enter Email" name="email" required>
 
                 <label for="password">Password:</label>
                 <input type="text" placeholder="Enter Password" name="password" required>
+
+                <input type="submit" name="submit" class="btn btn-primary" value="Submit">
             </form>
             <p>Don't have an account? <a href="register.php">Register Here</a></p>
         </div>

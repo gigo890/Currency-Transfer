@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,10 @@
     <title>Currency Transfer | Home</title>
 </head>
 <body>
-    <?php include("includes/header.php")?>
+    <?php 
+        $includeOption = 'index';
+        include("includes/header.php")
+    ?>
     <div class="banner" id = "index">
         <h1>Currency Transfer</h1>
     </div>

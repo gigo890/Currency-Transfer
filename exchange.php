@@ -11,7 +11,10 @@
 </head>
 
 <body>
-    <?php include ("includes/header.php") ?>
+    <?php 
+        $includeOption = 'default';
+        include("includes/header.php") 
+    ?>
     <div class="container" id="exchange">
         <div id="transfer-container">
             <div id="currency-input">

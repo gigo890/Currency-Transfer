@@ -12,6 +12,8 @@
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
         $phoneNum = trim($_POST['phoneNum']);
         $dob = trim($_POST['dob']);
+
+        $insertQuery = null;
         
         if($query = $db->prepare("SELECT * FROM users WHERE email = ?")){
             $error='';
@@ -44,29 +46,34 @@
                         $error .= '<p class="error">Something went wrong!</p>';
                     }
                 }
-
             }
-            
         }
         $query->close();
-        $insertQuery->close();
+        if($insertQuery !== null){
+            $insertQuery->close();
+        }
         mysqli_close($db);
+        sleep(1);
     }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <<link rel="stylesheet" href="css/mobile.css">
+    <link rel="stylesheet" href="css/mobile.css">
     <link rel="stylesheet" href="css/desktop.css" media="only screen and (min-width: 700px)"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-    <?php include('includes/header.php')?>
+    <?php 
+        $includeOption = 'form';
+        include("includes/header.php") 
+    ?>
     <div class="container">
         <div class="form-container">
             <div class="form-box">
+                <h1>Register</h1>
                 <form method="post">
                         <label for="fname">First Name:</label>
                         <input type="text" name="fname" class="form-input" required>
@@ -92,6 +99,7 @@
                         <input type="submit" name="submit" class="btn btn-primary" value="Submit">
                 </form>
                 <p>Already have an account? <a href="login.php">Login</a></p>
+                <?php if(isset($_POST['submit'])){echo($error);}?>
             </div>
             
         </div>

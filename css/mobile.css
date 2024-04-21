@@ -75,28 +75,37 @@ div.footer > p{
 }
 
 /* GRID */
-div.grid{
+.grid{
     width:90vw;
     height:auto;
     margin:5vw;
-    background-color: white;
+    background-color: #222738;
 
     display:flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
     align-items: center;
 }
-.grid > .course{
-    
+
+.grid > .account{
     padding:10px;
     margin: 10px;
-    border: solid #d99c0d 5px;
-    background-color:#282F44;
+    border: solid white 5px;
+    background-color:#434252;
     color: white;
-    height: 300px;
+    height: 150px;
     width: 300px;
+    
 }
+.account#new{
+    border: none;
+    background-color: #222738;
+}
+/*
+.account#new .new-image{
+    background-image: url("../")
+}
+*/
 div.grid > a.page{
     display: flex;
     flex-direction: column;
@@ -196,6 +205,22 @@ div.grid > a.page > .pageimg{
 div.container{
     background-color: #434252;
 }
+.welcome-container{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+.welcome-container > h1{
+    color: white;
+    text-align: center;
+    background-color: #222738;
+    width: 35%;
+    border: solid white 2px;
+    border-top: none;
+    border-radius: 0px 0px 15px 15px;
+    padding:5px;
+    margin-bottom:20px;
+}
 
 div.sideContainer{
     display:flex; 
@@ -218,28 +243,8 @@ div.sideContainer{
     display: flex;
 }
 
-form{
-    background-color: #282F44;
-    display: flex;
-    vertical-align: middle;
-}
-form h2{
-    color:white;
-}
-form > input, label{
-    width: 100%;
-}
-form input{
-    height:30px;
-    border-radius: 5px;
-    border: solid gray 2px;
-    padding:2px
-}
-form button{
-    height:34px;
-    width: 75px;
-    border-color:solid #282F44 2px;
-}
+/*Forms*/
+
 .form-container{
     background-color:#434252;
     align-items: center;
@@ -249,22 +254,47 @@ form button{
     width:100%;
     height:80vh;
 }
-.form-box, .form-box > form{
-    background-color: #282F44;
-    border-radius: 5px;
-    border: solid white 2px;
+.form-box{
+    background-color: white;
+    border-radius: 10px;
+    border: solid #434252 2px;
     padding: 100px;
-    width: 200px;
+    width: 250px;
+}
+.form-box > h1{
+    text-align: center;
+    margin-bottom: 10px;
+}
+.form-box, .form-box > form{
     height:auto;
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
-.form-box > label, input{
-    width:100%;
+.form-box > p{
+    margin-top: 10px;
 }
 .form-box label{
-    color: white;
+    color: black;
+}
+form{
+    display: flex;
+    vertical-align: middle;
+}
+form > input, form > label{
+    width: 100% - 4px;
+}
+form input{
+    height:30px;
+    border-radius: 5px;
+    border: solid gray 2px;
+    padding:2px
+}
+.error{
+    color: red;
+}
+.success{
+    color: green;
 }
 
 /*Exchange*/

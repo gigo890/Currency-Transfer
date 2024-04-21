@@ -62,3 +62,54 @@
 .sideContainer{
   width: 300px;
 }
+
+/*Forms*/
+
+.form-container{
+  background-color:#434252;
+  align-items: center;
+  justify-content: center;
+  display:flex;
+  flex-direction: column;
+  width:100%;
+  height:80vh;
+}
+.form-box{
+  background-color: white;
+  border-radius: 10px;
+  border: solid #434252 2px;
+  padding: 100px;
+  width: 275px;
+}
+.form-box > h1{
+  text-align: center;
+  margin-bottom: 10px;
+}
+.form-box, .form-box > form{
+  height:auto;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.form-box > p{
+  margin-top: 10px;
+}
+.form-box label{
+  color: black;
+}
+form{
+  display: flex;
+  vertical-align: middle;
+}
+form > input, form > label{
+  width: 100% - 4px;
+}
+form input{
+  height:30px;
+  border-radius: 5px;
+  border: solid gray 2px;
+  padding:2px
+}
+form input[type="submit"]{
+  margin-top: 10px;
+}
