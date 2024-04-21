@@ -219,8 +219,6 @@ div.sideContainer{
 }
 
 form{
-    padding: 20px;
-    margin: 10px;
     background-color: #282F44;
     display: flex;
     vertical-align: middle;
@@ -228,10 +226,14 @@ form{
 form h2{
     color:white;
 }
+form > input, label{
+    width: 100%;
+}
 form input{
-    margin-left: 20px;
     height:30px;
-    width: 175px;
+    border-radius: 5px;
+    border: solid gray 2px;
+    padding:2px
 }
 form button{
     height:34px;
@@ -243,16 +245,26 @@ form button{
     align-items: center;
     justify-content: center;
     display:flex;
+    flex-direction: column;
     width:100%;
     height:80vh;
 }
-.form-box{
+.form-box, .form-box > form{
     background-color: #282F44;
     border-radius: 5px;
     border: solid white 2px;
     padding: 100px;
     width: 200px;
-    height:200px;
+    height:auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.form-box > label, input{
+    width:100%;
+}
+.form-box label{
+    color: white;
 }
 
 /*Exchange*/

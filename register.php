@@ -1,6 +1,6 @@
 <?php
-    require_once "config.php";
-    require_once "session.php";
+    require_once "includes/config.php";
+    require_once "includes/session.php";
 
     if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])){
 
@@ -9,7 +9,7 @@
         $email = trim($_POST['email']);
         $password = trim($_POST['password']);
         $confirmPassword = trim($_POST['confirmPassword']);
-        $passwordhash = password_hash($password, PASSWORD_BCRYPT);
+        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
         $phoneNum = trim($_POST['phoneNum']);
         $dob = trim($_POST['dob']);
         
@@ -36,7 +36,7 @@
                 }
                 if(empty($error)){
                     $insertQuery = $db->prepare("INSERT INTO users (first_name, last_name, email, password, phone_number, dob) VALUES (?, ?, ?, ?, ?, ?);");
-                    $insertQuery->bind_param("sss", $fname, $lname, $email, $password, $phoneNum, $dob, $passwordHash);
+                    $insertQuery->bind_param("ssssss", $fname, $lname, $email, $passwordHash, $phoneNum, $dob);
                     $result = $insertQuery->execute();
                     if( $result){
                         $error .= '<p class="success">Your Registration has been successful!</p>';
@@ -57,39 +57,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <<link rel="stylesheet" href="css/mobile.css">
+    <link rel="stylesheet" href="css/desktop.css" media="only screen and (min-width: 700px)"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
+    <?php include('includes/header.php')?>
     <div class="container">
         <div class="form-container">
+            <div class="form-box">
+                <form method="post">
+                        <label for="fname">First Name:</label>
+                        <input type="text" name="fname" class="form-input" required>
 
-            <form type="" method="post">
-                <div class="form-box">
-                    <label for="fname">First Name:</label>
-                    <input type="text" name="fname" class="form-input" required>
+                        <label for="lname">Last Name</label>
+                        <input type="text" name="lname" class="form-input" required>
 
-                    <label for="lname">Last Name</label>
-                    <input type="text" name="lname" class="form-input" required>
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" class="form=input" required>
 
-                    <label for="email">Email:</label>
-                    <input type="email" name="email" class="form=input" required>
+                        <label for="password">Password:</label>
+                        <input type="text" name="password" class="form-input" required>
 
-                    <label for="password">Password:</label>
-                    <input type="text" name="password" class="form-input" required>
+                        <label for="confirmPassword">Confirm Password:</label>
+                        <input type="text" name="confirmPassword" class="form-input" required>
 
-                    <label for="confirmPassword">Confirm Password:</label>
-                    <input type="text" name="confirmPassword" class="form-input" required>
+                        <label for="phoneNum">Phone Number: </label>
+                        <input type="text" name="phoneNum" class="form-input" required>
+                        
+                        <label for="dob">Date Of Birth</label>
+                        <input type="date" name="dob" class="form-input" required>
 
-                    <label for="phoneNum">Phone Number: </label>
-                    <input type="text" name="phoneNum" class="form-input" required>
-                    
-                    <label for="dob">Date Of Birth</label>
-                    <input type="date" name="dob" class="form-input" required>
-
-
-                </div>
-            </form>
+                        <input type="submit" name="submit" class="btn btn-primary" value="Submit">
+                </form>
+                <p>Already have an account? <a href="login.php">Login</a></p>
+            </div>
+            
         </div>
     </div>
 </body>
