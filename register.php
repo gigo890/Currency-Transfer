@@ -82,7 +82,7 @@
                         <input type="text" name="lname" class="form-input" required>
 
                         <label for="email">Email:</label>
-                        <input type="email" name="email" class="form=input" required>
+                        <input type="email" name="email" class="form-input" required>
 
                         <label for="password">Password:</label>
                         <input type="text" name="password" class="form-input" required>
@@ -96,7 +96,7 @@
                         <label for="dob">Date Of Birth</label>
                         <input type="date" name="dob" class="form-input" required>
 
-                        <input type="submit" name="submit" class="btn btn-primary" value="Submit">
+                        <input type="submit" name="submit" class="btn" value="Submit">
                 </form>
                 <p>Already have an account? <a href="login.php">Login</a></p>
                 <?php if(isset($_POST['submit'])){echo($error);}?>

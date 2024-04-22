@@ -71,7 +71,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])){
                 <label for="password">Password:</label>
                 <input type="text" placeholder="Enter Password" name="password" required>
 
-                <input type="submit" name="submit" class="btn btn-primary" value="Submit">
+                <input type="submit" name="submit" class="btn" value="Submit">
             </form>
             <p>Don't have an account? <a href="register.php">Register Here</a></p>
         </div>

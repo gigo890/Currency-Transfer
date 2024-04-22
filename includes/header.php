@@ -8,7 +8,15 @@
 <body>
     <div class = "nav">
         <div class="navlist">
-        <a href="index.php">Currency Transfer</a>
+        <?php 
+        if(basename($_SERVER['PHP_SELF']) == 'user-index.php'  
+        || basename($_SERVER['PHP_SELF']) == 'exchange.php'
+        || basename($_SERVER['PHP_SELF']) == 'new-account.php'){
+                        echo('<a href="user-index.php">Currency Transfer</a>');
+                    }else{
+                        echo('<a href="index.php">Currency Transfer</a>');
+                    }
+                    ?>
             <div class="links" id='left'>
                 <a href="exchange.php">Exchange</a>
                 <a href="">Placeholder</a>
@@ -16,9 +24,11 @@
             </div>
             <div class="links" id='right'>
                 <?php
-                    if($includeOption == 'userIndex'){
+                    if(basename($_SERVER['PHP_SELF']) == 'user-index.php' 
+                    || basename($_SERVER['PHP_SELF']) == 'exchange.php'
+                    || basename($_SERVER['PHP_SELF']) == 'new-account.php'){
                         echo('<a href="logout.php">Log Out</a>');
-                    }else if($includeOption == 'form'){
+                    }else if(basename($_SERVER['PHP_SELF']) == 'register.php' || basename($_SERVER['PHP_SELF']) == 'login.php'){
                         echo('<a href="index.php">Return</a>');
                     }
                     else{

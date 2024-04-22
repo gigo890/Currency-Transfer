@@ -1,6 +1,8 @@
 
 <?php
     session_start();
+    $userID = $_SESSION['user_id'];
+    include("includes/config.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,15 +15,14 @@
 </head>
 <body>
     <?php 
-        $includeOption = 'userIndex';
         include("includes/header.php")
     ?>
         
-    <div class="container">
+    <div class="container" id="user-index">
         <div class="welcome-container">
             <h1>Welcome, <?php echo($_SESSION['user']['first_name']);?></h1>
         </div>
-
+        <h1>Accounts</h1>
         <div class="grid" id="account-container">
             <div class="account">
                 <h1>Account Name</h1>
@@ -30,8 +31,28 @@
                 <p>balance:</p>
                 <p>£0.00</p>
             </div>
+
+            <?php
+                $sql = "SELECT * FROM accounts WHERE owner = $userID";
+                $result = mysqli_query($db, $sql);
+                $queryResult = mysqli_num_rows($result);
+
+                if($queryResult > 0){
+                    while($row = mysqli_fetch_assoc($result)){
+                        echo'
+                        <div class="account">
+                            <h1>'.$row["account_name"].'</h1>
+                            <p>Currency Type: '.$row["currency_type"].'</p>
+                            <p>Balance:</p>
+                            <p>'.$row["balance"].'</p>
+                        </div>';
+                    }
+                }
+            ?>
             <div class="account" id="new">
-                
+                <div class="image-container">
+                <a href="new-account.php" class="new-image"></div>
+                </div>
             </div>
         </div>
     </div>
