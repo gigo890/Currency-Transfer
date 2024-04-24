@@ -289,15 +289,33 @@ form{
     display: flex;
     vertical-align: middle;
 }
+form#exchange{
+    flex-direction: column;
+}
+
+.form-group{
+    width: 100%;
+    display:flex;
+    margin-bottom: 5px;
+}
+.form-group > input, .form-group > label{
+    width:50%;
+    height: 30px;
+}
+.form-group > label{
+    text-align: right;
+    vertical-align: middle;
+}
 form > input, form > label{
     width: 100% - 4px;
+    padding:2px;
 }
 form input{
     height:30px;
     border-radius: 5px;
     border: solid gray 2px;
-    padding:2px
 }
+form .result-box
 .error{
     color: red;
 }
@@ -333,9 +351,7 @@ div#currency-output{
     background-color: white;
     width: 50%;
     color:black;
-}
-button#convert{
-
+    height:30px;
 }
 .btn{
     background-color:#222738;

@@ -54,6 +54,9 @@
     <div class="container">
         <div class="form-container">
             <div class="form-box">
+                <div class="return-container">
+                    <a href="user-index.php">Return</a>
+                </div>
                 <h1>Create New Account</h1>
                 <form action="" method="post">
                     <label for="accountName">Account Name</label>
