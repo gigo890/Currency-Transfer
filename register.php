@@ -85,10 +85,10 @@
                         <input type="email" name="email" class="form-input" required>
 
                         <label for="password">Password:</label>
-                        <input type="text" name="password" class="form-input" required>
+                        <input type="password" name="password" class="form-input" required>
 
                         <label for="confirmPassword">Confirm Password:</label>
-                        <input type="text" name="confirmPassword" class="form-input" required>
+                        <input type="password" name="confirmPassword" class="form-input" required>
 
                         <label for="phoneNum">Phone Number: </label>
                         <input type="text" name="phoneNum" class="form-input" required>

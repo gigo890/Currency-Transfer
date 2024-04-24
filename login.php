@@ -69,7 +69,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])){
                 <input type="text" placeholder="Enter Email" name="email" required>
 
                 <label for="password">Password:</label>
-                <input type="text" placeholder="Enter Password" name="password" required>
+                <input type="password" placeholder="Enter Password" name="password" required>
 
                 <input type="submit" name="submit" class="btn" value="Submit">
             </form>

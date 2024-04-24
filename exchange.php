@@ -3,20 +3,51 @@
     $userID = $_SESSION['user_id'];
     include("includes/config.php");
 
-    $accountID = null;
-    $name = null;
-    $currency = null;
-    $balance = null;
+    $errorSuccess = "";
+    $receivedAmount = 0;
 
-    if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])){
+    if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['transfer'])){
         
-        $accountID = $_POST['sender'];
+        $senderID = $_POST['sender'];
+        $receiverID = $_POST['receiver'];
         $amount = $_POST['amount'];
-        
-        $balance = mysql_query($db, "SELECT balance FROM accounts WHERE account_id = $accountID");
-        if($balance >= $amount){
-            echo'<p class="success">Your transfer has been successful!</p>';
-            /* ADDING AND SUBTRACTING MONEY (NEEDS RECIEVER CODED IN SELECT) */
+
+        if(isset($_POST['resultStore'])){
+            echo"TEST";
+            $receivedAmount = explode(" ", $_POST['resultStore'])[0];
+        }
+        if($query = $db->prepare('SELECT balance FROM accounts WHERE account_id = ?')){
+            $query->bind_param('s', $senderID);
+            $query->execute();
+            $result = $query->get_result();
+
+            if($result->num_rows > 0){
+                $sender = $result->fetch_assoc();
+                $balance = $sender['balance'];
+
+                if($balance >= $amount){
+                    $newBalance = $balance - $amount;
+                    $db->query("UPDATE accounts SET balance = $newBalance WHERE account_id = $senderID");
+
+                    if($query = $db->prepare('SELECT balance FROM accounts WHERE account_id = ?')){
+                        $query->bind_param('s', $receiverID);
+                        $query->execute();
+                        $result = $query->get_result();
+
+                        if($result->num_rows > 0){
+                            $receiver = $result->fetch_assoc();
+                            $balance = $receiver['balance'];
+                            echo $balance; echo $receivedAmount;
+                            $newBalance = (float)$balance + (float)$receivedAmount;
+                            $db->query("UPDATE accounts SET balance = $newBalance WHERE account_id = $receiverID");
+                            $errorSuccess = "<p class='success'>Your transfer has been successful!</p>";
+                        }
+                    }
+                }else{
+                    $errorSuccess = "<p class='error'>Insufficient balance</p>";
+                }
+                
+            }
         }
     }
 ?>
@@ -51,63 +82,95 @@
 
                             if($queryResult > 0){
                                 while($row = mysqli_fetch_assoc($result)){
-                                    $accountID = $row["account_id"];
+                                    $senderID = $row["account_id"];
                                     $name = $row["account_name"];
                                     $currency = $row["currency_type"];
                                     $balance = $row["balance"];
-                                    echo'
-                                    <option value='.$userID.'>'.$name.' - '.$currency.'</option>
+                                    echo"<option value=$senderID ";
+                                    if (isset($_POST['sender'])) {
+                                        if ($_POST['sender'] == $senderID) {
+                                            echo "selected";
+                                        }
+                                        
+                                    }
+                                    echo '>'.$name.' - '.$currency.'</option>
                                     ';
                                 }
                             }
                         ?>
                     </select>
+                    
+                    <?php 
+                        if(isset($_POST['sender'])){
+                        $sql = "SELECT currency_type FROM accounts WHERE account_id = ".$_POST['sender'];
+                        $result = mysqli_query($db, $sql);
+                        $queryResult = mysqli_num_rows($result);
+                        $currency = $result->fetch_object()->currency_type;
+                        echo "<input id='fromCurrency' style='display: none;' value='" . $currency . "'>";
+                        }
+                        ?>
                 </div>
                 <div class="form-group">
                     <label for="amount">Enter amount:</label>
-                    <input type="number" id="amount" placeholder="Enter Amount">
+                    <input type="number" name= amount id="amount" <?php if (isset($_POST['amount'])) { echo "value='".$_POST['amount']."'"; } ?> placeholder="Enter Amount">
                     <br>
                 </div>
                 <div class="form-group">
                     <label for="output-amount">Transfer to:</label>
-                    <select name="receiver" id="toCurrency">
+                    <select name="receiver" id="toAccount">
                         <?php
                             $sql = "SELECT * FROM accounts WHERE owner = $userID";
                             $result = mysqli_query($db, $sql);
                             $queryResult = mysqli_num_rows($result);
+
                             if($queryResult > 0){ /* PREFERABLY EXCLUDES SENDER ACCOUNT, SO NEEDS SOME SORT OF SELECTION */
                                 while($row = mysqli_fetch_assoc($result)){
-                                    if($row['account_id'] == $_POST['sender'])
-                                    $accountID = $row["account_id"];
+                                    $receiverID = $row["account_id"];
                                     $name = $row["account_name"];
                                     $currency = $row["currency_type"];
                                     $balance = $row["balance"];
-                                    echo'
-                                    <option value='.$userID.'>'.$name.' - '.$currency.'</option>
+                                    echo"<option value=$receiverID ";
+                                    if (isset($_POST['receiver'])) {
+                                        if ($_POST['receiver'] == $receiverID) {
+                                            echo "selected";
+                                        }
+                                        
+                                    }
+                                    echo '>'.$name.' - '.$currency.'</option>
                                     ';
                                 }
                             }
                         ?>
                     </select>
+                    <?php 
+                        if(isset($_POST['receiver'])){
+                        $sql = "SELECT currency_type FROM accounts WHERE account_id = ".$_POST['receiver'];
+                        $result = mysqli_query($db, $sql);
+                        $queryResult = mysqli_num_rows($result);
+                        $currency = $result->fetch_object()->currency_type;
+                        echo "<input id='toCurrency' style='display: none;' value='" . $currency . "'>";
+                        }
+                    ?>
                 </div>
                 <div class="form-group">
-                    <div id="result" class="result-box"></div>
-                    <div id="error" class="error"></div>
+                    <label for="result">Amount Received: </label>
+                    <div id="result" class="result-box" name='result'></div>
+                    <input type="hidden" id="resultStore" name="resultStore" method="post">
                 </div>
-                <button id="convert-button">Convert</button>
-
-                 <!-- MAKE CONVERT ACT AS A PREVIEW OF THE AMOUNT AFTER CONVERSION
-                      ADD NEW BUTTON TO ACTUALLY TRANSFER THE MONEY-->
+                <button type="submit" name="convert" id="convert-button">Update Conversion</button>
+                <button type="submit" name="transfer">Confirm Transfer</button>
+                <div id="error" class="error"><?php echo $errorSuccess?></div>
                 </form>
             </div>
         </div>
             
     </div>
 
-    <script src="js/exchange-api.js"></script>
-    <script>
-        document.getElementById("convert-button").addEventListener("click", convertCurrency);
-    </script>
+    <?php
+    if (isset($_POST['receiver'])) {
+        echo "<script src='js/exchange-api.js'></script>";
+    }
+    ?>
 </body>
 
 </html>

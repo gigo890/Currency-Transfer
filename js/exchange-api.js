@@ -1,15 +1,13 @@
-function convertCurrency() {
+
     const apiKey = '3c8926bff129de21d35b07a1';
     const BASE_URL = `https://v6.exchangerate-api.com/v6/${apiKey}`;
-
     const fromCurrencyCode = document.getElementById("fromCurrency").value;
     const toCurrencyCode = document.getElementById("toCurrency").value;
-    const amountInput = document.getElementById("amount");
+    const amount = document.getElementById("amount").value;
     const result = document.getElementById("result");
     const error = document.getElementById("error");
-
-    const amount = amountInput.value;
-
+    console.log(fromCurrencyCode);
+    console.log(toCurrencyCode);
     if (amount !== "" && parseFloat(amount) >= 1) {
         const url = `${BASE_URL}/pair/${fromCurrencyCode}/${toCurrencyCode}`;
 
@@ -21,10 +19,10 @@ function convertCurrency() {
                     /\B(?=(\d{3})+(?!\d))/g,
                     ","
                 );
+                result.innerHTML = `${formattedResult} ${toCurrencyCode}`;
+                document.getElementById("resultStore").value = `${formattedResult} ${toCurrencyCode}`;
 
-                result.innerHTML = `${amount} ${fromCurrencyCode} = ${formattedResult} ${toCurrencyCode}`;
-                amountInput.value = ""; // Clear the amount input after conversion
-                error.textContent = ""; // Clear any previous error message
+                console.log("test");
             })
             .catch(() => {
                 error.textContent = "An error occurred, please try again later";
@@ -32,4 +30,3 @@ function convertCurrency() {
     } else {
         error.textContent = "Please enter a valid amount";
     }
-}

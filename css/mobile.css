@@ -91,6 +91,7 @@ div.footer > p{
     padding:10px;
     margin: 10px;
     border: solid white 5px;
+    border-radius: 15px;
     background-color:#434252;
     color: white;
     height: 150px;
