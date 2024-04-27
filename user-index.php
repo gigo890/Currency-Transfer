@@ -3,6 +3,12 @@
     session_start();
     $userID = $_SESSION['user_id'];
     include("includes/config.php");
+
+    if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['account-id'])){
+        echo "test";
+        $_SESSION['viewAccount'] = $_POST['account-id'];
+        header("Location: view-account.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,14 +30,6 @@
         </div>
         <h1>Accounts</h1>
         <div class="grid" id="account-container">
-            <div class="account">
-                <h1>Account Name</h1>
-                <p>currency type:</p>
-                <p>PLACEHOLDER</p>
-                <p>balance:</p>
-                <p>£0.00</p>
-            </div>
-
             <?php
                 $sql = "SELECT * FROM accounts WHERE owner = $userID";
                 $result = mysqli_query($db, $sql);
@@ -41,10 +39,11 @@
                     while($row = mysqli_fetch_assoc($result)){
                         echo'
                         <div class="account">
-                            <h1>'.$row["account_name"].'</h1>
+                            <h1>'.$row['account_name'].'</h1>
                             <p>Currency Type: '.$row["currency_type"].'</p>
                             <p>Balance:</p>
                             <p>'.$row["balance"].'</p>
+                            <form method="post"><button name="account-id" value="'.$row['account_id'].'">View Account Details</buttton></form>
                         </div>';
                     }
                 }

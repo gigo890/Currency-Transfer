@@ -13,10 +13,9 @@
         $amount = $_POST['amount'];
 
         if(isset($_POST['resultStore'])){
-            echo"TEST";
             $receivedAmount = explode(" ", $_POST['resultStore'])[0];
         }
-        if($query = $db->prepare('SELECT balance FROM accounts WHERE account_id = ?')){
+        if($query = $db->prepare('SELECT balance, currency_type FROM accounts WHERE account_id = ?')){
             $query->bind_param('s', $senderID);
             $query->execute();
             $result = $query->get_result();
@@ -24,12 +23,14 @@
             if($result->num_rows > 0){
                 $sender = $result->fetch_assoc();
                 $balance = $sender['balance'];
+                $sentCurrency = $sender['currency_type'];
+                echo $sentCurrency;
 
                 if($balance >= $amount){
                     $newBalance = $balance - $amount;
                     $db->query("UPDATE accounts SET balance = $newBalance WHERE account_id = $senderID");
 
-                    if($query = $db->prepare('SELECT balance FROM accounts WHERE account_id = ?')){
+                    if($query = $db->prepare('SELECT balance, currency_type FROM accounts WHERE account_id = ?')){
                         $query->bind_param('s', $receiverID);
                         $query->execute();
                         $result = $query->get_result();
@@ -37,16 +38,21 @@
                         if($result->num_rows > 0){
                             $receiver = $result->fetch_assoc();
                             $balance = $receiver['balance'];
-                            echo $balance; echo $receivedAmount;
                             $newBalance = (float)$balance + (float)$receivedAmount;
                             $db->query("UPDATE accounts SET balance = $newBalance WHERE account_id = $receiverID");
+
+                            $insertQuery = $db->prepare("INSERT INTO transfers (sender, receiver, amount_sent, amount_received, currency_sent, currency_received) VALUES (?, ?, ?, ?, ?, ?)");
+                            $insertQuery->bind_param("iiddss", $senderID, $receiverID, $amount, $receivedAmount, $sender['currency_type'], $receiver['currency_type']);
+                            $result = $insertQuery->execute();
+                            if($result){
                             $errorSuccess = "<p class='success'>Your transfer has been successful!</p>";
+                            header('location: user-index.php');
+                            }
                         }
                     }
                 }else{
                     $errorSuccess = "<p class='error'>Insufficient balance</p>";
                 }
-                
             }
         }
     }
@@ -91,7 +97,6 @@
                                         if ($_POST['sender'] == $senderID) {
                                             echo "selected";
                                         }
-                                        
                                     }
                                     echo '>'.$name.' - '.$currency.'</option>
                                     ';
@@ -99,7 +104,6 @@
                             }
                         ?>
                     </select>
-                    
                     <?php 
                         if(isset($_POST['sender'])){
                         $sql = "SELECT currency_type FROM accounts WHERE account_id = ".$_POST['sender'];
@@ -134,7 +138,6 @@
                                         if ($_POST['receiver'] == $receiverID) {
                                             echo "selected";
                                         }
-                                        
                                     }
                                     echo '>'.$name.' - '.$currency.'</option>
                                     ';

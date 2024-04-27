@@ -11,7 +11,8 @@
         <?php 
         if(basename($_SERVER['PHP_SELF']) == 'user-index.php'  
         || basename($_SERVER['PHP_SELF']) == 'exchange.php'
-        || basename($_SERVER['PHP_SELF']) == 'new-account.php'){
+        || basename($_SERVER['PHP_SELF']) == 'new-account.php'
+        || basename($_SERVER['PHP_SELF']) == 'view-account.php'){
                         echo('<a href="user-index.php">Currency Transfer</a>');
                     }else{
                         echo('<a href="index.php">Currency Transfer</a>');
