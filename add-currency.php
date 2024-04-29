@@ -44,6 +44,9 @@
 <body>
     <?php include('includes/header.php');?>
     <div class="container" id="add-currency">
+        <div class="back-button">
+            <a href="view-account.php">Back</a>
+        </div>
         <div class="form-container">
             <div class="form-box">
                 <h1>Add Funds</h1>

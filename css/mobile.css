@@ -241,15 +241,14 @@ div.container{
     display:flex;
     align-items: center;
     justify-content: center;
+    padding-top: 20px;
 }
 .welcome-container > h1{
     color: white;
     text-align: center;
     background-color: #222738;
-    width: 35%;
     border: solid white 2px;
     border-top: none;
-    border-radius: 0px 0px 15px 15px;
     padding:5px;
     margin-bottom:20px;
 }

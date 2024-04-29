@@ -46,9 +46,6 @@
 
             $db->query("UPDATE reviews SET case_closed = 1 WHERE review_id = $reviewID");
         }
-        if(isset($_POST['reopen'])){
-            $db->query("UPDATE reviews SET case_closed = 0 WHERE review_id = $reviewID");
-        }
     }
 ?>
 <!DOCTYPE html>
@@ -137,13 +134,8 @@
                         <form action="" method="post">
                             <input type="submit" id="approve" name="approve" value="Approve">
                             <input type="submit" id="decline" name="decline" value="decline">
-                        </form>';
-                }else{
-                    echo'<form method="post">
-                            <input type="submit" id="reopen" name="reopen" value="Reopen Review">
                         </form>
-                        </div>';
-
+                    </div>';
                 }
             ?>
         </div>

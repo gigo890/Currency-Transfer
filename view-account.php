@@ -52,9 +52,14 @@
                     </div>";
             ?>
             <div class="buttons">
-                <a class="btn" href="add-currency.php">Add Funds</a>
-                <form method="post"><input type="submit" name="delete-account" value="delete account"></form>
-                <form method="post"><input type="submit" name="review" value="View Review"></form>
+                <?php 
+                if($account['is_suspended']){
+                echo '<form method="post"><input type="submit" name="review" value="View Review"></form>';
+                }else{
+                echo'<form action="add-currency.php"><input type="submit" name="add-funds" value="Add Funds"></form>
+                <form method="post"><input type="submit" name="delete-account" value="delete account"></form>';
+                }
+                ?>
             </div>
         </div>
             <div class='history-container'>

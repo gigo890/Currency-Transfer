@@ -30,7 +30,7 @@
                 $sentCurrency = $sender['currency_type'];
                 echo $sentCurrency;
 
-                if($balance >= $amount && ){
+                if($balance >= $amount){
                         $newBalance = $balance - $amount;
                         $db->query("UPDATE accounts SET balance = $newBalance WHERE account_id = $senderID");
 
@@ -47,7 +47,7 @@
                                 $db->query("UPDATE accounts SET balance = $newBalance WHERE account_id = $receiverID");
                                 $sus = 0;
 
-                                if($limit >= $amount){
+                                if($_POST['is-suspiscious']){
                                     $db->query("UPDATE accounts SET is_suspended = 1 WHERE account_id = $senderID");
                                     $sus = 1;
                                 }
@@ -93,6 +93,7 @@
         <div id="transfer-container">
             <form id="exchange" action="" method="post">
                 <div class="form-group">
+                    <input id="limit" style="display:none;"value=<?phpecho $limit?>>
                     <label for="sender">Enter Sender Account:</label>
                     <select name="sender" id="fromAccount">
                         <?php
@@ -174,6 +175,7 @@
                     <label for="result">Amount Received: </label>
                     <div id="result" class="result-box" name='result'></div>
                     <input type="hidden" id="resultStore" name="resultStore" method="post">
+                    <input type="hidden" id="is-suspiscious" name="is-suspiscious" method="post">
                 </div>
                 <button type="submit" name="convert" id="convert-button">Update Conversion</button>
                 <button type="submit" name="transfer">Confirm Transfer</button>
