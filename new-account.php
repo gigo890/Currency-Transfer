@@ -9,7 +9,7 @@
 
         $insertQuery = null;
 
-        if($query = $db->prepare("SELECT * FROM accounts WHERE account_name = ?")){
+        if($query = $db->prepare("SELECT * FROM accounts WHERE account_name = ? AND is_disabled = 0")){
             $error='';
 
             $query->bind_param('s',$email);
@@ -52,11 +52,11 @@
     <?php include("includes/header.php")?>
 
     <div class="container">
+        <div class="back-button">
+            <a href="user-index.php">Back</a>
+        </div>
         <div class="form-container">
             <div class="form-box">
-                <div class="return-container">
-                    <a href="user-index.php">Return</a>
-                </div>
                 <h1>Create New Account</h1>
                 <form action="" method="post">
                     <label for="accountName">Account Name</label>

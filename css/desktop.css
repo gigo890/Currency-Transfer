@@ -1,3 +1,4 @@
+/* HEADER */
 .nav > .links {
     list-style-type: none;
     margin: 0;
@@ -6,21 +7,37 @@
     background-color: #023047;
     display: inline-block;
 }
-.nav a + a:before{
-  
-  content: " | ";
-  padding: 0 10px;
+.home{
+  width:10%;
+  border-right:solid white 2px;
 }
 .icon-container{
   display: none;
 }
 .navlist{
   flex-direction: row !important;
+  width: 100%;
+}
+.navlist > a{
+  width:auto;
+}
+.nav .links, .nav{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.nav a{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+}
+.nav a + a{
+  border-left: solid white 2px;
 }
 .links#left{
-  display: inline !important;
   padding: 0;
   height: 100%;
+  width:auto;
 }
 .links#right{
   display: inline;
@@ -35,16 +52,9 @@
   
   float: left;
 }
-.links#left a:before{
-  content: " | ";
-  padding: 0 10px;
-}
 
 .menu{
   display: none;
-}
-.nav > .home{
-  display:none;
 }
 .container .info{
   display: flex;
@@ -101,17 +111,19 @@ form{
   display: flex;
   vertical-align: middle;
 }
+.form-group{
+  height:30px;
+}
 form > input, form > label{
-  width: 100% - 4px;
+  width: calc(100% - 4px);
 }
 form input{
-  height:30px;
+  height:calc(100%-4px);
   border-radius: 5px;
   border: solid gray 2px;
   padding:2px
 }
 form input[type="submit"]{
-  margin-top: 10px;
 }
 .return-container{
   width:100;
@@ -123,4 +135,102 @@ form input[type="submit"]{
   color: white;
   text-decoration: none;
   border-radius: 5px;
+}
+
+/* ADMIN INDEX */
+.limit-container{
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:center;
+  padding:15px;
+  
+}
+.limit-container form{
+  height: 30px;
+}
+.limit-container label{
+  color:white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:100%;
+}
+.limit-container input.btn{
+  height: 100%;
+}
+.table-container{
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:center;
+}
+.table-container table{
+  background-color: white;
+  width:50%;
+  border-radius: 5px;
+}
+table, th, td{
+  border-collapse: collapse;
+}
+th, td{
+  padding: 5px;
+}
+table thead{
+  width:100%;
+  border-bottom: solid #023047 2px;
+}
+tr th + th{
+  border-left:solid #023047 2px;
+}
+table tbody{
+  min-height:50vh;
+}
+table tbody td{
+  text-align: center;
+}
+tr td + td{
+  border-left: solid #023047 2px;
+}
+
+
+/*REVIEW DETAILS*/
+.container#review, .review-container, .review-owner-details, .transaction-container, .evidence{
+  display:flex;
+  flex-direction:column;
+  align-items: center;
+}
+.review-container{
+  background-color: white;
+  padding:15px;
+  border-radius: 25px;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  width:50vw;
+}
+.transaction-container{
+  min-width: 550px;
+}
+.review-container h2, .transaction-container p{
+  text-align: center
+}
+.review-container h2, .review-container > h1{
+  color: white;
+  background-color: #023047;
+  padding: 10px;
+  border-radius: 15px;
+  width: 50%;
+  text-align: center;
+}
+.image-container img{
+  width:auto;
+  height:auto;
+  display:flex;
+  align-items: center;
+}
+.manage-review{
+  width: 20vw;
 }

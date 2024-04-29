@@ -13,9 +13,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/mobile.css">
-    <link rel="stylesheet" href="css/desktop.css" media="only screen and (min-width: 700px)"> 
+    <meta charset="UTF-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Currency Transfer | Home</title>
 </head>
@@ -31,14 +29,16 @@
         <h1>Accounts</h1>
         <div class="grid" id="account-container">
             <?php
-                $sql = "SELECT * FROM accounts WHERE owner = $userID";
+                $sql = "SELECT * FROM accounts WHERE owner = $userID AND is_disabled = 0";
                 $result = mysqli_query($db, $sql);
                 $queryResult = mysqli_num_rows($result);
 
                 if($queryResult > 0){
                     while($row = mysqli_fetch_assoc($result)){
                         echo'
-                        <div class="account">
+                        <div class="account">';
+                        if($row['is_suspended']){ echo "<h1 style='color:red;'>SUSPENDED"; }
+                            echo'
                             <h1>'.$row['account_name'].'</h1>
                             <p>Currency Type: '.$row["currency_type"].'</p>
                             <p>Balance:</p>

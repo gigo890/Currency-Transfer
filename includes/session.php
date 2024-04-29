@@ -5,4 +5,8 @@
         header("location: user-index.php");
         exit;
     }
+    if(isset($_SESSION["admin_id"]) && $_SESSION["admin_id"] === true){
+        header('location: admin-index.php');
+        exit;
+    }
 ?>

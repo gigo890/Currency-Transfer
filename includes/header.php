@@ -2,22 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/mobile.css">
+    <link rel="stylesheet" href="css/desktop.css" media="only screen and (min-width: 700px)">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
     <div class = "nav">
+        <div class="home">
+            <?php 
+            if(basename($_SERVER['PHP_SELF']) == 'index.php'  
+            || basename($_SERVER['PHP_SELF']) == 'login.php'
+            || basename($_SERVER['PHP_SELF']) == 'register.php'){
+                    echo('<a href="index.php">Currency Transfer</a>');
+                }else{
+                    echo('<a href="user-index.php">Currency Transfer</a>');
+                }
+            ?>
+        </div>
         <div class="navlist">
-        <?php 
-        if(basename($_SERVER['PHP_SELF']) == 'user-index.php'  
-        || basename($_SERVER['PHP_SELF']) == 'exchange.php'
-        || basename($_SERVER['PHP_SELF']) == 'new-account.php'
-        || basename($_SERVER['PHP_SELF']) == 'view-account.php'){
-                        echo('<a href="user-index.php">Currency Transfer</a>');
-                    }else{
-                        echo('<a href="index.php">Currency Transfer</a>');
-                    }
-                    ?>
             <div class="links" id='left'>
                 <a href="exchange.php">Exchange</a>
                 <a href="">Placeholder</a>
@@ -25,15 +28,13 @@
             </div>
             <div class="links" id='right'>
                 <?php
-                    if(basename($_SERVER['PHP_SELF']) == 'user-index.php' 
-                    || basename($_SERVER['PHP_SELF']) == 'exchange.php'
-                    || basename($_SERVER['PHP_SELF']) == 'new-account.php'){
-                        echo('<a href="logout.php">Log Out</a>');
+                    if(basename($_SERVER['PHP_SELF']) == 'index.php'){
+                        echo('<a href="login.php">Login / Sign Up</a>');
                     }else if(basename($_SERVER['PHP_SELF']) == 'register.php' || basename($_SERVER['PHP_SELF']) == 'login.php'){
                         echo('<a href="index.php">Return</a>');
                     }
                     else{
-                    echo('<a href="login.php">Login / Sign Up</a>');
+                        echo('<a href="logout.php">Log Out</a>');
                     }
                 ?>
                 

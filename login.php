@@ -24,6 +24,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])){
 
             if($result->num_rows == 1){
 
+
                 $user = $result->fetch_assoc();
                 $_SESSION['user'] = $user;
                 $userID = $user['user_id'];
@@ -38,6 +39,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])){
                     $error .= '<p class="Error">The Password is not valid.</p>';
                 }
             }else{
+                if($query = $db->prepare("SELECT * FROM admins WHERE email = ?")){
+                    $query->bind_param('s', $email);
+                    $query->execute();
+                    $result = $query->get_result();
+
+                    if($result->num_rows == 1){
+                        $admin = $result->fetch_assoc();
+                        $_SESSION['admin'] = $admin;
+                        $adminID = $admin['admin_id'];
+                        $passwordHash = $admin['password'];
+
+                        if(password_verify($password, $passwordHash)){
+                            $_SESSION['admin_id'] = $adminID;
+                            $_SESSION['admin'] = $admin;
+                            header("location: admin-index.php");
+                        }
+
+                    }
+                }
                 $error .= '<p class="error">That Email is not registered.</p>';
             }
         }

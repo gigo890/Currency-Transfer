@@ -3,6 +3,10 @@
     $userID = $_SESSION['user_id'];
     include("includes/config.php");
 
+    $sql = "SELECT * FROM adminconfig WHERE 1";
+    $result = mysqli_query($db, $sql);
+    $limit = mysqli_fetch_object();
+
     $errorSuccess = "";
     $receivedAmount = 0;
 
@@ -26,30 +30,40 @@
                 $sentCurrency = $sender['currency_type'];
                 echo $sentCurrency;
 
-                if($balance >= $amount){
-                    $newBalance = $balance - $amount;
-                    $db->query("UPDATE accounts SET balance = $newBalance WHERE account_id = $senderID");
+                if($balance >= $amount && ){
+                        $newBalance = $balance - $amount;
+                        $db->query("UPDATE accounts SET balance = $newBalance WHERE account_id = $senderID");
 
-                    if($query = $db->prepare('SELECT balance, currency_type FROM accounts WHERE account_id = ?')){
-                        $query->bind_param('s', $receiverID);
-                        $query->execute();
-                        $result = $query->get_result();
+                        if($query = $db->prepare('SELECT balance, currency_type FROM accounts WHERE account_id = ?')){
+                            $query->bind_param('s', $receiverID);
+                            $query->execute();
+                            $result = $query->get_result();
 
-                        if($result->num_rows > 0){
-                            $receiver = $result->fetch_assoc();
-                            $balance = $receiver['balance'];
-                            $newBalance = (float)$balance + (float)$receivedAmount;
-                            $db->query("UPDATE accounts SET balance = $newBalance WHERE account_id = $receiverID");
+                            if($result->num_rows > 0){
+                                $receiver = $result->fetch_assoc();
+                                $balance = $receiver['balance'];
+                                $currentTime = date("Y-m-d h:i:sa");
+                                $newBalance = (float)$balance + (float)$receivedAmount;
+                                $db->query("UPDATE accounts SET balance = $newBalance WHERE account_id = $receiverID");
+                                $sus = 0;
 
-                            $insertQuery = $db->prepare("INSERT INTO transfers (sender, receiver, amount_sent, amount_received, currency_sent, currency_received) VALUES (?, ?, ?, ?, ?, ?)");
-                            $insertQuery->bind_param("iiddss", $senderID, $receiverID, $amount, $receivedAmount, $sender['currency_type'], $receiver['currency_type']);
-                            $result = $insertQuery->execute();
-                            if($result){
-                            $errorSuccess = "<p class='success'>Your transfer has been successful!</p>";
-                            header('location: user-index.php');
+                                if($limit >= $amount){
+                                    $db->query("UPDATE accounts SET is_suspended = 1 WHERE account_id = $senderID");
+                                    $sus = 1;
+                                }
+
+                                $insertQuery = $db->prepare("INSERT INTO transfers (sender, receiver, amount_sent, amount_received, currency_sent, currency_received, transfer_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+                                $insertQuery->bind_param("iiddsssi", $senderID, $receiverID, $amount, $receivedAmount, $sender['currency_type'], $receiver['currency_type'], $currentTime, $sus);
+                                $result = $insertQuery->execute();
+                                
+                                if($result){
+                                $errorSuccess = "<p class='success'>Your transfer has been successful!</p>";
+                                header('location: user-index.php');
+                                }
                             }
                         }
                     }
+                    
                 }else{
                     $errorSuccess = "<p class='error'>Insufficient balance</p>";
                 }
@@ -82,7 +96,7 @@
                     <label for="sender">Enter Sender Account:</label>
                     <select name="sender" id="fromAccount">
                         <?php
-                            $sql = "SELECT * FROM accounts WHERE owner = $userID";
+                            $sql = "SELECT * FROM accounts WHERE owner = $userID AND is_suspended = 0 AND is_disabled = 0";
                             $result = mysqli_query($db, $sql);
                             $queryResult = mysqli_num_rows($result);
 
@@ -115,15 +129,10 @@
                         ?>
                 </div>
                 <div class="form-group">
-                    <label for="amount">Enter amount:</label>
-                    <input type="number" name= amount id="amount" <?php if (isset($_POST['amount'])) { echo "value='".$_POST['amount']."'"; } ?> placeholder="Enter Amount">
-                    <br>
-                </div>
-                <div class="form-group">
                     <label for="output-amount">Transfer to:</label>
                     <select name="receiver" id="toAccount">
                         <?php
-                            $sql = "SELECT * FROM accounts WHERE owner = $userID";
+                            $sql = "SELECT * FROM accounts WHERE owner = $userID AND is_suspended = 0 AND is_disabled = 0";
                             $result = mysqli_query($db, $sql);
                             $queryResult = mysqli_num_rows($result);
 
@@ -155,6 +164,12 @@
                         }
                     ?>
                 </div>
+                <div class="form-group">
+                    <label for="amount">Enter amount:</label>
+                    <input type="number" step="0.01" name= "amount" id="amount" <?php if (isset($_POST['amount'])) { echo "value='".$_POST['amount']."'"; } ?> placeholder="Enter Amount">
+                    <br>
+                </div>
+                
                 <div class="form-group">
                     <label for="result">Amount Received: </label>
                     <div id="result" class="result-box" name='result'></div>

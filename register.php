@@ -15,7 +15,7 @@
 
         $insertQuery = null;
         
-        if($query = $db->prepare("SELECT * FROM users WHERE email = ?")){
+        if($query = $db->prepare("SELECT * FROM users, admins WHERE email = ?")){
             $error='';
 
             $query->bind_param('s', $email);

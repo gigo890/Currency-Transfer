@@ -1,11 +1,15 @@
 
 /* NAVBAR*/
 .nav{
+    width:100%;
+    height:auto;
     overflow: hidden;
     background-color: #282F44;
     position: relative; 
     display:flex;
     border-bottom: solid white 2px;
+    justify-content: center;
+    align-items: center;
 }
 .navlist{
     display: flex;
@@ -17,6 +21,9 @@
 .nav .links{
     display:none;
 }
+/* .links a.home{
+    display:block;
+} */
 .nav a,div.menu{
     color:white;
     padding: 14px 16px;
@@ -24,13 +31,28 @@
     font-size: 17px;
     display: block;
 }
-.home {
-    background-color: #282F44;
-    color: white;
+.home{
+    height:100%;
+    width:10%;
+    min-width:250px;
 }
-.home img{
-    height: 104px;
-    width:117px;
+.nav#admin > .home{
+  min-width: 350px;
+}
+.home a{
+    font-size:24px;
+    font-weight:bold;
+}
+.nav a{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+}
+.icon-container{
+    display:flex;
+    height:auto;
+    width: 100%;
+    flex-direction: row-reverse;
 }
 /* MENU ICON */
 .menu {
@@ -38,7 +60,6 @@
     cursor: pointer;
     vertical-align: middle;
     background: #282F44;
-    position: absolute;
     
     right: 0;
     top: 0;
@@ -183,47 +204,8 @@ div.grid > a.page > .pageimg{
 
 /* CONTAINERS */
 .container{
+    height: 80vh;
   }
-.container#view-account{
-    color: white;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-}
-.balance-container{
-    text-align:center;
-    border-radius: 15px;
-    border: solid white 2px;
-    width: auto;
-    margin: 5px;
-}
-.container#view-account > h1, .container#view-account > .balance-container > h2{
-    margin-top: 5px;
-    background-color: #222738;
-    padding: 5px 25px;
-    border-radius: 15px 15px 0px 0px;
-    border-bottom: solid white 2px;
-}
-.container#view-account > h1{
-    width: auto;
-    background-color: #222738;
-    padding: 5px 25px;
-    border-radius: 0px 0px 15px 15px;
-    border: solid white 2px;
-    border-top: 0px;
-    
-    color: white;
-    text-align: center;
-    background-color: #222738;
-    border: solid white 2px;
-    border-top: none;
-    border-radius: 0px 0px 15px 15px;
-    padding:5px;
-    margin-bottom:20px;
-}
-.container#view-account h2{
-
-}
 .container p{
     margin:10px;
 }
@@ -374,7 +356,7 @@ form .result-box
 }
 div#transfer-container{
     padding:10px;
-    width: 30%;
+    width: 50%;
     background-color:#282F44;
     color:white;
     border: solid white 2px;
@@ -405,18 +387,79 @@ div#currency-output{
 
 /* ----------VIEW ACCOUNT PAGE---------- */
 
+.container#view-account, .account-container{
+    color: white;
+}
+.container > .back-button{
+    display: flex;
+    width:80%;
+    justify-content: start;
+}
+.container > .back-button > a{
+    background-color:#222738;
+    color: white;
+    text-decoration: none;
+    border: solid white 1px;
+    border-radius: 5px;
+    padding: 5px; 
+    margin: 5px;
+}
+.account-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.account-container > h1{
+    width: 40%;
+    text-align: center;
+}
+.balance-container{
+    text-align:center;
+    border-radius: 15px;
+    border: solid white 2px;
+    width: auto;
+    margin: 5px;
+}
+.account-container  h1, .account-container > .balance-container > h2{
+    margin-top: 5px;
+    background-color: #222738;
+    padding: 5px 25px;
+    border-radius: 15px 15px 0px 0px;
+    border-bottom: solid white 2px;
+}
 .history-container{
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
-.transfer{
+.transfer, .history-header{
     display:flex;
     align-items: center;
     justify-content: center;
-    width: 80%;
+    width: 40%;
 }
-.transfer .transfer-column{
-    width: 30%;
+.history-header{
+    border: solid white 2px;
+    justify-content: space-between;
 }
+.header-column + .header-column {
+    border-left: solid white 2px;
+}
+.history-column, .header-column{
+    width: 50%;
+}
+.history-column{
+    border:solid white 1px;
+}
+.history-column p, .header-column h2{
+    text-align: center;
+} 
+
+/* DELETE */
+.form-box#delete h1, .form-box#delete h2{
+    text-align: center;
+}
+
