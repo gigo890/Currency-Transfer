@@ -37,6 +37,7 @@
             <a href="user-index.php">Back</a>
         </div>
         <div class="account-container">
+            <div class="account-detail">
             <?php 
                 $sql = "SELECT * FROM accounts WHERE account_id = $accountID";
                 $result = mysqli_query($db, $sql);
@@ -54,68 +55,72 @@
             <div class="buttons">
                 <?php 
                 if($account['is_suspended']){
-                echo '<form method="post"><input type="submit" name="review" value="View Review"></form>';
+                echo '<form method="post"><input type="submit" id="review" name="review" value="View Review"></form>';
                 }else{
-                echo'<form action="add-currency.php"><input type="submit" name="add-funds" value="Add Funds"></form>
-                <form method="post"><input type="submit" name="delete-account" value="delete account"></form>';
+                echo'<form action="add-currency.php"><input type="submit" id="add" name="add-funds" value="Add Funds"></form>
+                <form method="post"><input type="submit" id="delete" name="delete-account" value="delete account"></form>';
                 }
                 ?>
             </div>
         </div>
+        </div>
             <div class='history-container'>
-                <div class='history-header'>
-                    <div class='header-column'>
-                        <h2>Account Reference</h2>
-                    </div>
-                    <div class='header-column'>
-                        <h2>Transaction</h2>
-                    </div>
-                </div>
-        <?php
-            $sql = "SELECT * FROM transfers WHERE sender = $accountID OR receiver = $accountID";
-            $result = mysqli_query($db, $sql);
-            $queryResult = mysqli_num_rows($result);
+                <table>
+                    <thead>
+                        <tr>
+                        <th>Account Reference</th>
+                        <th>Transaction</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            $sql = "SELECT * FROM transfers WHERE sender = $accountID OR receiver = $accountID";
+                            $result = mysqli_query($db, $sql);
+                            $queryResult = mysqli_num_rows($result);
 
-            if($queryResult > 0){
-                while($row = mysqli_fetch_assoc($result)){
-                    $senderID = $row['sender'];
-                    $sql = "SELECT account_name FROM accounts WHERE account_id = $senderID";
-                    $senderResult = mysqli_query($db,$sql);
-                    $sender = mysqli_fetch_assoc($senderResult);
+                            if($queryResult > 0){
+                                while($row = mysqli_fetch_assoc($result)){
+                                    $senderID = $row['sender'];
+                                    $sql = "SELECT account_name FROM accounts WHERE account_id = $senderID";
+                                    $senderResult = mysqli_query($db,$sql);
+                                    $sender = mysqli_fetch_assoc($senderResult);
 
-                    $receiverID = $row['receiver'];
-                    $sql = "SELECT account_name FROM accounts WHERE account_id = $receiverID";
-                    $receiverResult = mysqli_query($db, $sql);
-                    $receiver = mysqli_fetch_assoc($receiverResult);
+                                    $receiverID = $row['receiver'];
+                                    $sql = "SELECT account_name FROM accounts WHERE account_id = $receiverID";
+                                    $receiverResult = mysqli_query($db, $sql);
+                                    $receiver = mysqli_fetch_assoc($receiverResult);
 
-                    echo "
-                    <div class='transfer'>
-                        <div class='history-column'>";
-                            if($account['account_name'] == $receiver['account_name'] || $account['account_name'] == $account['account_name']){
-                                echo "<p>".$sender['account_name']."</p>";
-                            }else{
-                                echo "<p>".$receiver['account_name']."</p>";
-                            }echo "
-                        </div>
-                        <div class='history-column'>";
-                            if($account['account_name'] == $sender['account_name']){
-                                echo "<p class='sent'>-".$row['amount_sent']." ".$row['currency_sent']."</p>";
-                            }else{
-                                echo "<p calss='received'>+".$row['amount_received']." ".$row['currency_received']."</p>";
-                            } echo"
-                        </div>
-                    </div>";
-                        
+                                    echo "
+                                    <tr class='transfer'>
+                                        <td class='history-column'>";
+                                            if($account['account_name'] == $receiver['account_name'] || $account['account_name'] == $account['account_name']){
+                                                echo "<p>".$sender['account_name']."</p>";
+                                            }else{
+                                                echo "<p>".$receiver['account_name']."</p>";
+                                            }echo "
+                                        </td>
+                                        <td class='history-column'>";
+                                            if($account['account_name'] == $sender['account_name']){
+                                                echo "<p class='sent'>-".$row['amount_sent']." ".$row['currency_sent']."</p>";
+                                            }else{
+                                                echo "<p class='received'>+".$row['amount_received']." ".$row['currency_received']."</p>";
+                                            } echo"
+                                        </td>
+                                    </tr>";
+                                        
 
-                        
-                        
+                                        
+                                        
 
 
-                    /* SCRAP ECHOES ABOVE AND MAKE THE TRANSFERS DISPLAY IN A TABLE (IT'S BED TIME NOW, SO DO IT TOMORROW YOU LAZY ASS) */
-                }
-            }
-
-        ?>
+                                    /* SCRAP ECHOES ABOVE AND MAKE THE TRANSFERS DISPLAY IN A TABLE (IT'S BED TIME NOW, SO DO IT TOMORROW YOU LAZY ASS) */
+                                }
+                            }
+                            
+                        ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     </body>

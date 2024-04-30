@@ -1,15 +1,16 @@
 
 /* NAVBAR*/
 .nav{
+    display: flex;
+
     width:100%;
-    height:auto;
     overflow: hidden;
-    background-color: #282F44;
     position: relative; 
-    display:flex;
+
+    background-color: #282F44;
     border-bottom: solid white 2px;
-    justify-content: center;
-    align-items: center;
+
+    height:auto;
 }
 .navlist{
     display: flex;
@@ -32,9 +33,7 @@
     display: block;
 }
 .home{
-    height:100%;
-    width:10%;
-    min-width:250px;
+    vertical-align: center;
 }
 .nav#admin > .home{
   min-width: 350px;
@@ -49,11 +48,12 @@
   align-items: center;
 }
 .icon-container{
-    display:flex;
-    height:auto;
-    width: 100%;
-    flex-direction: row-reverse;
+    display:block;
+    position: absolute;
+    right:0;
+    top:0;
 }
+
 /* MENU ICON */
 .menu {
     display: inline-block;
@@ -74,6 +74,7 @@
 }
 
 /* FOOTER */
+
 .footer{
     background-color: #282F44;
 }
@@ -94,18 +95,116 @@ div.footer > p{
 .footer{
     text-align: center;
 }
+/* INDEX */
+.container#exchange-rates .grid{
+    justify-content: center;
+}
+.grid .currency{
+    padding:10px;
+    margin: 10px;
+    border: solid white 5px;
+    border-radius: 15px;
+    background-color:#434252;
+    color: white;
+    min-height: 150px;
+    width: 300px;
+    
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.grid .currency h1{
+    width: 100%;
+    text-align: center;
+}
 
-/* GRID */
+/* USER INDEX */
+
+.welcome-container{
+    width:100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+}
+.welcome-container > h1{
+    width:100%;
+    color: white;
+    text-align: center;
+    background-color: #222738;
+    border: solid white 2px;
+    border-left:none; border-right:none;
+    padding:5px;
+    margin-bottom:20px;
+}
+/* ACCOUNTS */
+
+.account-header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.account-header > h1{
+    text-align: center;
+    color:white;
+    background-color: #222738;
+    width:90%;
+    border-bottom: solid white 2px;
+}
+.account form{
+    width:100%;
+}
+.account button{
+    width: 100%;
+    height: 50px;
+    color: white;
+    background-color: #222738;
+    border:solid white 2px;
+    margin: 5px;
+}
+.account .image-container{
+    width: 100%;
+    display:flex;
+    justify-content: center;
+}
+.currency-image{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    width: 90%;
+    aspect-ratio: 1.5;
+}
+.currency-image#GBP{
+    background-image: url("../images/uk-flag.webp");
+}
+.currency-image#USD{
+    background-image: url("../images/us-flag.webp");
+}
+
+.currency-image#JPY{
+    background-image: url("../images/ja-flag.webp");
+}
+
+.currency-image#AUD{
+    background-image: url("../images/as-flag.webp");
+}
+
+.currency-image#EUR{
+    background-image: url("../images/eu-flag.webp");
+}
 .grid{
     width:90vw;
     height:auto;
     margin:5vw;
     background-color: #222738;
+    border-radius: 15px;
 
     display:flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
 }
 
 .grid > .account{
@@ -115,15 +214,29 @@ div.footer > p{
     border-radius: 15px;
     background-color:#434252;
     color: white;
-    height: 150px;
+    min-height: 150px;
     width: 300px;
     
+    display:flex;
+    flex-direction: column;
+}
+.account-info{
+    display:flex;
+    flex-direction: column;
+}
+.account-info h1{
+    text-align: center;
+    border-bottom:solid white 2px;
+    margin-bottom: 3px;
+}
+.account-info p{
+    padding:5px;
 }
 .account#new{
     border: none;
     background-color: #222738;
 }
-.account#new > .image-container{
+.image-container{
     width:100%;
     height: 100%;
     display:flex;
@@ -134,38 +247,10 @@ div.footer > p{
     background-position: center;
 
     width: 75%;
-    background-image: url("../images/white-plus-image.png")
-}
-div.grid > a.page{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-
-    height: 300px;
-    width: 300px;
-    margin: 5px;
-    padding: 20px;
-    color: white;
-    background-color: #282F44;
-
-    border-radius: 5%;
-    border-style: solid;
-    border-color: #d99c0d;
-    border-width: 5px;
-
-    text-decoration: none;
-    text-align:center;
-}
-div.grid > a.page > .pageimg{
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-
-    width: 75%;
     aspect-ratio: 1;
+    background-image: url("../images/white-plus-image.webp")
 }
+
 
 
 
@@ -204,9 +289,9 @@ div.grid > a.page > .pageimg{
 
 /* CONTAINERS */
 .container{
-    height: 80vh;
+    min-height:80vh;
   }
-.container p{
+.container > p{
     margin:10px;
 }
 .lineDivider{
@@ -219,7 +304,7 @@ div.grid > a.page > .pageimg{
     padding: 16px 14px;
     margin-left: 10px;
 }
-.container h2{
+.container > h2{
     padding: 10px 
 }
 .container ul > li{
@@ -236,21 +321,6 @@ div.grid > a.page > .pageimg{
 }
 div.container{
     background-color: #434252;
-}
-.welcome-container{
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 20px;
-}
-.welcome-container > h1{
-    color: white;
-    text-align: center;
-    background-color: #222738;
-    border: solid white 2px;
-    border-top: none;
-    padding:5px;
-    margin-bottom:20px;
 }
 
 div.sideContainer{
@@ -386,8 +456,8 @@ div#currency-output{
 
 /* ----------VIEW ACCOUNT PAGE---------- */
 
-.container#view-account, .account-container{
-    color: white;
+.container#view-account, .account-detail{
+    color: black;
 }
 .container > .back-button{
     display: flex;
@@ -405,57 +475,100 @@ div#currency-output{
 }
 .account-container{
     display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.account-detail{
+    display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    background-color: white;
+    border-radius: 15px;
+    width:50%;
 }
-.account-container > h1{
-    width: 40%;
+.account-detail  h1, .account-detail > .balance-container > h2{
+    background-color: #222738;
+    border-radius:15px 15px 0px 0px;
+    color:white;
+}
+.account-detail > h1{
+    width: 100%;
     text-align: center;
+    padding:5px;
 }
 .balance-container{
+    background-color: white;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align:center;
     border-radius: 15px;
-    border: solid white 2px;
+    border-collapse: collapse;
     width: auto;
-    margin: 5px;
+    margin:5px;
 }
-.account-container  h1, .account-container > .balance-container > h2{
-    margin-top: 5px;
-    background-color: #222738;
-    padding: 5px 25px;
-    border-radius: 15px 15px 0px 0px;
-    border-bottom: solid white 2px;
+.balance-container h2{
+    width:100%;
+    padding:10px;
+    border: solid #222738 2px;
 }
+.balance-container p{
+    border: solid #222738 2px;
+    border-radius: 0px 0px 15px 15px;
+    padding: 10px;
+    width:100%;
+    height:100%;
+}
+.account-container .buttons{
+    display:flex;
+
+}
+.account-container form{
+    padding:5px;
+}
+.account-container .buttons input{
+    padding:5px;
+    text-align: center;
+    width:100%;
+    border:none;
+    color:white;
+}
+.account-container .buttons input#add{
+    background-color:green;
+}
+.account-container .buttons input#delete{
+    background-color:red;
+}
+.account-container .buttons input#review{
+    background-color: gold;
+}
+
+/* TRANSFER HISTORY */
+
 .history-container{
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    margin-top: 15px;
 }
-.transfer, .history-header{
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    width: 40%;
+.history-container table{
+    background-color:white;
+    border-radius:15px;
 }
-.history-header{
-    border: solid white 2px;
-    justify-content: space-between;
+.history-container tr + tr{
+    border-top:#222738 solid 2px;
 }
-.header-column + .header-column {
-    border-left: solid white 2px;
+.history-container .sent{
+    color:red;
 }
-.history-column, .header-column{
-    width: 50%;
+.history-container .received{
+    color:green;
 }
-.history-column{
-    border:solid white 1px;
-}
-.history-column p, .header-column h2{
-    text-align: center;
-} 
+
 
 /* DELETE */
 .form-box#delete h1, .form-box#delete h2{

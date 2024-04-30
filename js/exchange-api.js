@@ -1,6 +1,7 @@
 
 const apiKey = '3c8926bff129de21d35b07a1';
 const BASE_URL = `https://v6.exchangerate-api.com/v6/${apiKey}`;
+
 const fromCurrencyCode = document.getElementById("fromCurrency").value;
 const toCurrencyCode = document.getElementById("toCurrency").value;
 const limit = document.getElementById("limit").value;

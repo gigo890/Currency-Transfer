@@ -10,11 +10,13 @@
 .home{
   width:10%;
   border-right:solid white 2px;
+  min-width:250px;
 }
 .icon-container{
   display: none;
 }
 .navlist{
+  display:flex;
   flex-direction: row !important;
   width: 100%;
 }
@@ -72,6 +74,15 @@
 .sideContainer{
   width: 300px;
 }
+
+/* ACCOUNTS */
+.grid{
+  justify-content: left;
+}
+.account{
+  flex-direction: row;
+}
+
 
 /*Forms*/
 
